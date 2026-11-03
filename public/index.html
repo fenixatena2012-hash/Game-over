@@ -1,1 +1,60 @@
-
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101a19">
+  <title>PlaySpace — mundos para explorar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" id="homeLink"><span class="brand-mark">P</span> PlaySpace</a>
+  <nav><a href="#games">Jogos</a><a href="#about">Sobre</a></nav>
+  <div class="account" id="accountArea"><button class="btn btn-ghost" id="loginOpen">Entrar</button><button class="btn btn-primary" id="registerOpen">Criar conta</button></div>
+</header>
+<main id="homeView">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse"></span> UM UNIVERSO, MUITAS POSSIBILIDADES</div>
+      <h1>Seu próximo<br><em>mundo começa aqui.</em></h1>
+      <p>Descubra experiências, encontre outros jogadores e construa suas próprias aventuras.</p>
+      <div class="hero-actions"><a class="btn btn-primary btn-large" href="#games">Explorar jogos <span>↗</span></a><button class="btn btn-outline btn-large" id="heroRegister">Criar meu perfil</button></div>
+      <div class="hero-meta"><span>✦ Plataforma em evolução</span><span>● Multiplayer online</span></div>
+    </div>
+    <div class="hero-art" aria-label="Paisagem voxel de Wildlands">
+      <div class="sun"></div><div class="mountain m1"></div><div class="mountain m2"></div><div class="mountain m3"></div>
+      <div class="voxel-tree tree1"><i></i><b></b></div><div class="voxel-tree tree2"><i></i><b></b></div>
+      <div class="art-label"><span>JOGO EM DESTAQUE</span><strong>WILDLANDS</strong><small>Explore. Sobreviva. Construa.</small></div>
+    </div>
+  </section>
+  <section class="section" id="games">
+    <div class="section-heading"><div><div class="eyebrow">DESCUBRA SEU PRÓXIMO DESTINO</div><h2>Explore os jogos</h2></div><span class="muted">01 experiência disponível</span></div>
+    <article class="game-card">
+      <div class="game-cover"><div class="cover-sky"></div><div class="cover-sun"></div><div class="cover-mountain"></div><div class="cover-ground"></div><div class="cover-tree">♣</div><span class="cover-tag">PRIMEIRO JOGO OFICIAL</span><strong>WILDLANDS</strong></div>
+      <div class="game-info"><div class="game-kicker">PLAYSPACE ORIGINAL <span>•</span> SOBREVIVÊNCIA</div><h3>PlaySpace: Wildlands</h3><p>Um mundo aberto de blocos. Colete recursos, construa seu abrigo e explore com outros jogadores.</p><div class="game-bottom"><div class="chips"><span>3D</span><span>Sandbox</span><span>Multiplayer</span></div><button class="btn btn-primary" id="playButton">Jogar agora <span>↗</span></button></div></div>
+    </article>
+  </section>
+  <section class="about" id="about"><div><div class="eyebrow">FEITO PARA EXPLORAR</div><h2>Uma plataforma.<br><em>Infinitas histórias.</em></h2></div><p>PlaySpace está começando. Wildlands é a primeira aventura: um protótipo jogável que será expandido com novos biomas, ferramentas e experiências.</p></section>
+</main>
+<main id="gameView" class="game-view hidden">
+  <div class="game-toolbar"><button class="btn btn-ghost" id="backHome">← PlaySpace</button><div><strong>WILDLANDS</strong><small id="connectionState">Conectando...</small></div><div class="toolbar-actions"><button class="btn btn-ghost" id="saveButton">Salvar</button><button class="btn btn-ghost" id="inventoryButton">Inventário <kbd>E</kbd></button></div></div>
+  <div class="game-layout">
+    <div class="canvas-wrap" id="canvasWrap"><div id="gameCanvas"></div>
+      <div class="game-hud"><div class="hud-player"><span id="playerAvatar">🧭</span><div><b id="playerName">Explorador</b><small>Sobrevivente</small></div></div><div class="bars"><div>♥ <span class="bar"><i style="width:100%"></i></span></div><div>♨ <span class="bar hunger"><i style="width:82%"></i></span></div></div></div>
+      <div class="crosshair">＋</div><div class="toast" id="gameToast">Carregando Wildlands...</div>
+      <div class="mobile-hint" id="mobileHint">Arraste à esquerda para andar · à direita para olhar</div>
+      <div class="touch-controls"><button data-action="jump">↑</button><button data-action="mine">⛏</button><button data-action="build">▧</button><button data-action="inventory">▤</button></div>
+      <div class="hotbar" id="hotbar"></div>
+    </div>
+    <aside class="side-panel"><div class="panel-title">EXPEDIÇÃO <span class="live-dot">● ONLINE</span></div><div class="stat-row"><span>🌤 Clima</span><b>Claro</b></div><div class="stat-row"><span>🧭 Região</span><b>Planícies</b></div><div class="stat-row"><span>🪓 Ferramenta</span><b>Mãos</b></div><hr><div class="panel-title">JOGADORES <span id="playerCount">1</span></div><div id="playersList" class="players-list"></div><hr><div class="panel-title">CHAT DO MUNDO</div><div id="chatMessages" class="chat-messages"></div><form id="chatForm" class="chat-form"><input id="chatInput" maxlength="180" placeholder="Diga algo..." autocomplete="off"><button aria-label="Enviar">➤</button></form><p class="small-note">WASD mover · Espaço pular · Shift correr · Clique minerar · Botão direito construir · E inventário</p></aside>
+  </div>
+</main>
+<div class="modal hidden" id="authModal"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div class="eyebrow">PLAYSPACE ACCOUNT</div><h2 id="authTitle">Entre no seu universo</h2><p id="authSubtitle">Acesse sua conta para acompanhar seu perfil.</p><form id="authForm"><label>Nome de usuário<input id="authUsername" minlength="3" maxlength="18" pattern="[A-Za-z0-9_]+" required placeholder="SeuNome"></label><label>Senha<input id="authPassword" type="password" minlength="8" maxlength="72" required placeholder="Mínimo de 8 caracteres"></label><button class="btn btn-primary btn-large full" id="authSubmit">Entrar</button></form><p class="switch-auth" id="authSwitch">Não tem conta? <button id="switchMode">Criar conta</button></p><div class="form-message" id="authMessage"></div></div></div>
+<div class="modal hidden" id="inventoryModal"><div class="modal-card inventory-card"><button class="modal-close" id="inventoryClose">×</button><div class="eyebrow">SEUS RECURSOS</div><h2>Mochila</h2><div id="inventoryGrid" class="inventory-grid"></div><p class="muted">Recursos coletados nesta sessão ficam no seu navegador. Use Salvar para guardar localmente.</p></div></div>
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="/app.js"></script>
+</body></html>
